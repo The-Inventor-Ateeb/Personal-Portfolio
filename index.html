@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #111111;
+            color: #eeeeee;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 20px;
+            background: #181818;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav li {
+            list-style: none;
+        }
+
+        nav li a {
+            display: block;
+            padding: 10px 22px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav li a:hover {
+            color: #ff8c00;
+            background: rgba(255, 140, 0, 0.08);
+            border-color: #ff8c00;
+            transform: translateY(-3px);
+            box-shadow:
+                0 0 10px rgba(255, 140, 0, 0.3),
+                0 0 20px rgba(255, 140, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 45px auto 25px;
+            font-size: 38px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            margin: 12px auto;
+            background: #ff8c00;
+            border-radius: 10px;
+            box-shadow: 0 0 12px #ff8c00;
+        }
+
+        body > h2,
+        body > h3,
+        body > h4 {
+            width: 80%;
+            max-width: 900px;
+            margin: 22px auto 4px;
+            color: #ff8c00;
+            font-size: 20px;
+        }
+
+        body > h2 + p,
+        body > h3 + p,
+        body > h4 + p {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #dddddd;
+            font-size: 17px;
+        }
+
+        hr {
+            width: 80%;
+            margin: 40px auto;
+            border: none;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #ff8c00,
+                transparent
+            );
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+        }
+
+        body > div {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 35px;
+            text-align: center;
+            background: #1b1b1b;
+            border: 1px solid #333;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        body > div:hover {
+            border-color: #ff8c00;
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(255, 140, 0, 0.15);
+        }
+
+        body > div h1 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        figure {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            padding: 4px;
+            object-fit: cover;
+            background: #111111;
+            border: 3px solid #ff8c00;
+            border-radius: 50%;
+            cursor: pointer;
+            transition:
+                width 0.4s ease,
+                height 0.4s ease,
+                border-radius 0.4s ease,
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .profile-pic:hover {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            transform: scale(1.03) rotate(2deg);
+            box-shadow:
+                0 0 15px #ff8c00,
+                0 0 35px rgba(255, 140, 0, 0.4);
+        }
+
+        figure a:last-child {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ff8c00;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        figure a:last-child:hover {
+            color: #ffffff;
+            transform: scale(1.08);
+            text-shadow:
+                0 0 8px #ff8c00,
+                0 0 18px #ff8c00;
+        }
+
+        body > div + hr + p {
+            width: 85%;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #1a1a1a;
+            border-left: 4px solid #ff8c00;
+            border-radius: 12px;
+            color: #dddddd;
+            font-size: 17px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        body > div + hr + p:hover {
+            background: #202020;
+            transform: translateY(-5px);
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(255, 140, 0, 0.15);
+        }
+
+        b {
+            color: #ff8c00;
+        }
+
+        i {
+            color: #ffffff;
+        }
+
+        u {
+            color: #ffb347;
+        }
+
+        mark {
+            padding: 2px 6px;
+            background: #ff8c00;
+            color: #111111;
+            border-radius: 4px;
+        }
+
+        abbr {
+            color: #ff8c00;
+            cursor: help;
+            border-bottom: 1px dotted #ff8c00;
+        }
+
+        del {
+            color: #777777;
+        }
+
+        em {
+            color: #ff8c00;
+        }
+
+        q {
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        body > p {
+            line-height: 1.7;
+        }
+
+        body ul,
+        body ol {
+            display: block;
+            width: 85%;
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 25px 50px;
+            background: #181818;
+            border: 1px solid #333;
+            border-radius: 15px;
+            color: #dddddd;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            list-style-position: inside;
+            transition: all 0.3s ease;
+        }
+
+        body ul:hover,
+        body ol:hover {
+            border-color: #ff8c00;
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(255, 140, 0, 0.15);
+        }
+
+        body ul li,
+        body ol li {
+            display: block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 15px;
+            color: #dddddd;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body ul li:hover,
+        body ol li:hover {
+            background: #242424;
+            color: #ffffff;
+            transform: translateX(10px);
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.15);
+        }
+
+        body ul li::marker,
+        body ol li::marker {
+            color: #ff8c00;
+            font-weight: bold;
+        }
+
+        body ul li:hover {
+            color: #ffae42;
+            text-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+        }
+
+        body ol li:hover {
+            border-left: 3px solid #ff8c00;
+            padding-left: 20px;
+        }
+
+        ::selection {
+            background: #ff8c00;
+            color: #111111;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444444;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff8c00;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 12px;
+            }
+
+            nav li a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            body > h2,
+            body > h3,
+            body > h4,
+            body > h2 + p,
+            body > h3 + p,
+            body > h4 + p {
+                width: 90%;
+            }
+
+            body > div {
+                width: 92%;
+                padding: 20px;
+            }
+
+            body > div + hr + p {
+                width: 90%;
+                padding: 20px;
+            }
+
+            body ul,
+            body ol {
+                width: 92%;
+                padding: 20px 25px;
+            }
+
+            .profile-pic:hover {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body id="home">
+
+    <nav>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="https://www.instagram.com/ateeb.visuals?stkn=Yzl3b204aGQ2bDV4" target="_blank">Instagram</a></li>
+        <li><a href="https://github.com/The-Inventor-Ateeb" target="_blank">GitHub</a></li>
+        <li><a href="project.html">Projects</a></li>
+    </nav>
+
+    <h1>My Profile</h1>
+
+    <h2>Name</h2>
+    <p>MUHAMMAD ATEEB UR REHMAN</p>
+
+    <h3>Mobile number</h3>
+    <p>03338290376</p>
+
+    <h4>Email</h4>
+    <p>mateeburrehman1788@gmail.com</p>
+
+    <br>
+    <hr>
+
+    <div>
+        <h1>Follow the account below for amazing reels!</h1>
+
+        <figure>
+            <a href="download.png" target="_blank">
+                <img src="download.png" alt="Profile image" class="profile-pic">
+            </a>
+            <br>
+            <a href="https://www.instagram.com/ateeb.visuals?stkn=Yzl3b204aGQ2bDV4">
+                ateeb.visuals
+            </a>
+        </figure>
+    </div>
+
+    <hr>
+
+    <p>
+        I am a <b>video editor</b>, and I have loved <i>video editing</i>
+        since <u>childhood</u>. That is why
+        <q>I create videos and try to upload them on Instagram</q>.
+        <mark>Alhamdulillah</mark>, I am also a
+        <abbr title="Self-employed professional">freelancer</abbr>.
+        I am currently <em>learning</em> <del>basic</del> advance editing
+        and hope to succeed in my profession.
+    </p>
+
+    <br>
+
+    <p>
+        I began my video editing journey using the following apps:
+    </p>
+
+    <ul>
+        <li>Kinemaster</li>
+        <li>InShot</li>
+        <li>CapCut</li>
+    </ul>
+
+    <p>
+        I selected CapCut as my editing tool because of its wide range of features.
+    </p>
+
+    <ol>
+        <li>Auto-Captions & Subtitles</li>
+        <li>Background Removal (Chroma Key & AI Cutout)</li>
+        <li>Text-to-Speech & AI Characters</li>
+        <li>Smart Tracking & Motion Blur</li>
+        <li>Multi-Layer Timeline</li>
+        <li>Keyframe Animation</li>
+        <li>Speed Ramping</li>
+        <li>Trending Effects & Transitions</li>
+        <li>Royalty-Free Audio & SFX</li>
+        <li>Templates & Preset Animations</li>
+        <li>Direct Social Media Integration</li>
+        <li>High-Resolution Export</li>
+        <li>Cross-Device Sync</li>
+    </ol>
+
+</body>
+</html>

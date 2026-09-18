@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #111111;
+            color: #eeeeee;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 38px;
+            margin-bottom: 35px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            margin: 12px auto;
+            background: #ff8c00;
+            border-radius: 10px;
+            box-shadow: 0 0 12px #ff8c00;
+        }
+
+        .table-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px;
+            background: #1b1b1b;
+            border: 1px solid #333333;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            overflow-x: auto;
+            transition: all 0.3s ease;
+        }
+
+        .table-container:hover {
+            border-color: #ff8c00;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7),
+                        0 0 25px rgba(255, 140, 0, 0.15);
+        }
+
+        .project-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .project-table th {
+            padding: 16px 18px;
+            background: #181818;
+            color: #ff8c00;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #ff8c00;
+            transition: all 0.3s ease;
+        }
+
+        .project-table th:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .project-table th:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .project-table th:hover {
+            background: #242424;
+            color: #ffae42;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+        }
+
+        .project-table td {
+            padding: 16px 18px;
+            background: #181818;
+            color: #dddddd;
+            text-align: center;
+            border-top: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .project-table td:first-child {
+            border-left: 1px solid #333333;
+            border-radius: 10px 0 0 10px;
+            color: #ff8c00;
+            font-weight: 700;
+        }
+
+        .project-table td:last-child {
+            border-right: 1px solid #333333;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .project-table td:nth-child(2) {
+            color: #ffae42;
+            font-weight: 600;
+        }
+
+        .project-table td:nth-child(3) {
+            color: #bbbbbb;
+        }
+
+        .project-table td:hover {
+            background: #242424;
+            color: #ffffff;
+            transform: translateY(-5px) scale(1.02);
+            border-color: #ff8c00;
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.25),
+                        0 0 20px rgba(255, 140, 0, 0.15);
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .project-table td:first-child:hover {
+            color: #ffae42;
+            text-shadow: 0 0 5px rgba(255, 140, 0, 0.7),
+                         0 0 15px rgba(255, 140, 0, 0.4);
+        }
+
+        .project-table td::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #ff8c00;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px #ff8c00;
+        }
+
+        .project-table td:hover::after {
+            width: 70%;
+        }
+
+        ::selection {
+            background: #ff8c00;
+            color: #111111;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444444;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff8c00;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .table-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .project-table {
+                font-size: 13px;
+            }
+
+            .project-table th,
+            .project-table td {
+                padding: 12px 10px;
+            }
+
+            .project-table td:hover {
+                transform: translateY(-2px) scale(1.01);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Projects</h1>
+
+    <div class="table-container">
+
+        <table class="project-table">
+
+            <tr>
+                <th>Project</th>
+                <th>Technology</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td>Bank Management System</td>
+                <td>C++</td>
+                <td>Bank account management system with file handling.</td>
+            </tr>
+
+            <tr>
+                <td>Hotel Management System</td>
+                <td>C++ & Database</td>
+                <td>Manages hotel records and customer information.</td>
+            </tr>
+
+            <tr>
+                <td>Face Mask Detection</td>
+                <td>Python & AI</td>
+                <td>AI-based system for detecting face masks.</td>
+            </tr>
+
+            <tr>
+                <td>Banking System with Fraud Detection</td>
+                <td>PHP, MySQL & ADBMS</td>
+                <td>Banking system with basic fraud detection features.</td>
+            </tr>
+
+            <tr>
+                <td>File Management System</td>
+                <td>C++ & DSA</td>
+                <td>File management system implemented using data structures.</td>
+            </tr>
+
+            <tr>
+                <td>Student Management System</td>
+                <td>Assembly</td>
+                <td>Student record management system using Assembly language.</td>
+            </tr>
+
+            <tr>
+                <td>Bikes Website</td>
+                <td>HTML, CSS & JavaScript</td>
+                <td>A responsive website for showcasing bikes.</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
